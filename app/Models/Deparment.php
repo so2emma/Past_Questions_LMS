@@ -17,6 +17,21 @@ class Deparment extends Model
 
     public function college()
     {
-        return $this->hasOne(College::class);
+        return $this->belongsTo(College::class);
+    }
+
+    public function programmes()
+    {
+        return $this->hasMany(Programme::class);
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 }

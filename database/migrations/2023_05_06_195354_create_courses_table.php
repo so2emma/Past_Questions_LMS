@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('programme_id')->constrained();
             $table->string('name');
             $table->string('course_code');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

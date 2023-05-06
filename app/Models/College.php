@@ -19,4 +19,19 @@ class College extends Model
         return $this->hasMany(Deparment::class);
     }
 
+    public function programmes()
+    {
+        return $this->hasMany(Programme::class);
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+    
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
 }
