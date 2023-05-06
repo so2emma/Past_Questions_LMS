@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom shadow" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand" href="#">ADMIN PANEL</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -31,7 +31,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                        <a class="nav-link @yield('home')" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @yield('dashboard')" aria-current="page" href="#">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Home</a>
@@ -41,7 +44,7 @@
                     @auth('admin')
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::guard("web")user()->name }}
+                            {{ Auth::guard("admin")->user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -58,10 +61,7 @@
                     </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Register</a>
+                            <a class="nav-link @yield('login')" aria-current="page" href="{{route('admin.login')}}">Login</a>
                         </li>
                     @endauth
 

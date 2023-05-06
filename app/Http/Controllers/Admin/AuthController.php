@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\RegisterFormRequest;
-use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -13,21 +13,35 @@ class AuthController extends Controller
     /**
      * This function is for authenticating an Admin
      */
-    public function login()
+    public function authenticate(Request $request): RedirectResponse
     {
+        // dd($request->password);
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('admin.dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 
-    public function register(RegisterFormRequest $request)
+    public function logout(Request $request)
     {
-       Admin::create($request->validated());
+        Auth::guard('admin')->logout();
 
-       return redirect()->route("");
-    }
+        $request->session()->invalidate();
 
-    public function logout()
-    {
+        $request->session()->regenerateToken();
 
+        return redirect()->route('admin.login');
     }
 
 }

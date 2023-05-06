@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix("admin")->name("admin.")->group(function() {
+    Route::middleware(["guest:admin", "PreventBackHistory"])->group(function() {
+        Route::view('/login','admin.auth.login')->name("login");
+        // Route::view('/register','admin.auth.register')->name("register");
+        Route::post('/authenticate', [AuthController::class, 'authenticate'])->name("authenticate");
+    });
+    
+    Route::middleware(['auth:admin', 'PreventBackHistory'])->group(function() {
+        Route::view('/dashboard','admin.dashboard')->name("dashboard");
+        Route::post("/logout", [AuthController::class, "logout"])->name("logout");
+    });
+});
