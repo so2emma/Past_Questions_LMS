@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CollegeController;
 use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +30,10 @@ Route::prefix("admin")->name("admin.")->group(function() {
         // Route::view('/register','admin.auth.register')->name("register");
         Route::post('/authenticate', [AuthController::class, 'authenticate'])->name("authenticate");
     });
-    
+
     Route::middleware(['auth:admin', 'PreventBackHistory'])->group(function() {
         Route::view('/dashboard','admin.dashboard')->name("dashboard");
         Route::post("/logout", [AuthController::class, "logout"])->name("logout");
+        Route::resource('colleges', CollegeController::class);
     });
 });

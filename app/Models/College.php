@@ -16,7 +16,7 @@ class College extends Model
 
     public function departments()
     {
-        return $this->hasMany(Deparment::class);
+        return $this->hasMany(Department::class);
     }
 
     public function programmes()
@@ -28,7 +28,7 @@ class College extends Model
     {
         return $this->hasMany(Course::class);
     }
-    
+
     public function questions()
     {
         return $this->hasMany(Question::class);

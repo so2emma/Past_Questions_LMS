@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\College;
 use Illuminate\Http\Request;
 
 class CollegeController extends Controller
@@ -12,7 +13,9 @@ class CollegeController extends Controller
      */
     public function index()
     {
-        //
+        $collges = College::all();
+        return view('admin.colleges.show', compact('categories'));
+
     }
 
     /**
@@ -20,7 +23,7 @@ class CollegeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.colleges.create');
     }
 
     /**
@@ -42,9 +45,10 @@ class CollegeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(College $college)
     {
-        //
+        return view('admin.colleges.edit', compact('college'));
+
     }
 
     /**

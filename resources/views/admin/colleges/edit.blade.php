@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create College')
+@section('title', 'Edit College')
 
 @section('content')
 
