@@ -32,6 +32,16 @@ class CollegeController extends Controller
     public function store(Request $request)
     {
         //
+        $formInput = $request->validate([
+            'name' => 'required',
+            'abbr' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        College::create($formInput);
+
+        return redirect()->route('admin.colleges.index')->with('success', 'College Created successfully');
+
     }
 
     /**
@@ -54,9 +64,18 @@ class CollegeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, College $college)
     {
-        //
+        $formInput = $request->validate([
+            'name' => 'required',
+            'abbr' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $college->update($formInput);
+
+        return redirect()->route('admin.colleges.index')->with('success', 'College Updated successfully');
+
     }
 
     /**
@@ -64,6 +83,9 @@ class CollegeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // dd($id);
+        College::destroy($id);
+        return redirect()->route('admin.colleges.index')->with('success', 'College deleted successfully');
+
     }
 }
