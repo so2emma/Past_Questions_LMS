@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CollegeController;
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,6 @@ Route::prefix("admin")->name("admin.")->group(function() {
         Route::view('/dashboard','admin.dashboard')->name("dashboard");
         Route::post("/logout", [AuthController::class, "logout"])->name("logout");
         Route::resource('colleges', CollegeController::class);
+        Route::resource('departments', DepartmentController::class);
     });
 });

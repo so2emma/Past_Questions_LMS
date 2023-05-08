@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('college_id')->constrained();
             $table->string('name');
+            $table->string('abbr');
             $table->text('description')->nullable();
             $table->timestamps();
         });
