@@ -10,9 +10,9 @@ class Programme extends Model
     use HasFactory;
 
     protected $fillable = [
-        'college_id',
         'department_id',
         'name',
+        'abbr',
         'description'
     ];
 

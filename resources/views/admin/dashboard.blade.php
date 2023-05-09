@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-3">
                     <div class="p-5 fw-bold h4 border bg-primary text-white">
-                        Programmes
+                        <a href="{{route('admin.programmes.index')}}" class="link-light">Programmes</a>
                         <p class="fw-light p-2">NO: 0 </p>
                     </div>
                 </div>

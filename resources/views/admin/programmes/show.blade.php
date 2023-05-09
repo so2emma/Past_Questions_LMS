@@ -1,16 +1,16 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Show Departments')
+@section('title', 'Show Programmes')
 
 @section('content')
     <div class="container my-5">
         <div class="d-flex justify-content-between">
             <span class="h4  me-auto fw-bold">
-                Displaying all Departments
+                Displaying all Programmes
             </span>
 
             <span>
-                <a href="{{ route('admin.departments.create') }}" class="btn btn-success">Create</a>
+                <a href="{{ route('admin.programmes.create') }}" class="btn btn-success">Create</a>
             </span>
         </div>
 
@@ -26,9 +26,9 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">College</th>
-                    <th scope="col">Name</th>
                     <th scope="col">Department</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">programme</th>
                     <th scope="col">Acronym</th>
                     <th scope="col">actions</th>
                 </tr>
@@ -37,18 +37,18 @@
                 <?php
                 $i = 1;
                 ?>
-                @foreach ($departments as $department)
+                @foreach ($programmes as $programme)
                     <tr>
 
                         <th scope="row">{{ $i++ }}</th>
-                        <td> {{ $department->college->abbr }} </td>
-                        <td> {{ $department->name }} </td>
-                        <td> {{ $department->description }} </td>
-                        <td> {{ $department->abbr }} </td>
+                        <td> {{ $programme->department->name }} </td>
+                        <td> {{ $programme->name }} </td>
+                        <td> {{ $programme->description }} </td>
+                        <td> {{ $programme->abbr }} </td>
                         <td>
                             <span class="d-flex justify-content-center">
-                                <a href="{{ route('admin.departments.edit', $department->id) }}" class="btn btn-success mx-1">Edit</a>
-                                <form action="{{ route('admin.departments.destroy', $department->id) }}" method="POST">
+                                <a href="{{ route('admin.programmes.edit', $programme->id) }}" class="btn btn-success mx-1">Edit</a>
+                                <form action="{{ route('admin.programmes.destroy', $programme->id) }}" method="POST">
                                     @csrf
                                     @method("DELETE")
                                     <button type="submit" class="btn btn-danger">Delete</button>
