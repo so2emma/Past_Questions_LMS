@@ -1,39 +1,25 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create department')
+@section('title', 'Create Course')
 
 @section('content')
     <div class="container my-5">
         <div class="d-flex justify-content-between">
             <span class="h4  me-auto fw-bold">
-                Create Department
+                Create Course
             </span>
 
             <span>
-                <a href="{{ route('admin.departments.index') }}" class="btn btn-success">View departments</a>
+                <a href="{{ route('admin.courses.index') }}" class="btn btn-success">View Courses</a>
             </span>
         </div>
     </div>
 
     <div class="container my-5 border border-radius">
-        <form action="{{ route('admin.departments.store') }}" method="POST" class="m-3">
+        <form action="{{ route('admin.courses.store') }}" method="POST" class="m-3">
             @csrf
-            {{-- relationship with College --}}
             <div class="mb-3">
-                <label for="college_id" class="form-label">Department College</label>
-                <select class="form-select" name="college_id" id="">
-                    <option selected value=""></option>
-                    @foreach ($colleges as $college)
-                    <option value="{{$college->id }}"> {{ $college->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            @error('college_id')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-
-            <div class="mb-3">
-                <label for="name" class="form-label">Department Name</label>
+                <label for="name" class="form-label">Course Name</label>
                 <input type="name" class="form-control" name="name" value="{{ old('name') }}">
             </div>
             @error('name')
@@ -41,10 +27,10 @@
             @enderror
 
             <div class="mb-3">
-                <label for="abbr" class="form-label">Department Acronym</label>
-                <input type="abbr" class="form-control" name="abbr" value="{{ old('abbr') }}">
+                <label for="course_code" class="form-label">Course Code</label>
+                <input type="course_code" class="form-control" name="course_code" value="{{ old('course_code') }}">
             </div>
-            @error('abbr')
+            @error('course_code')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 

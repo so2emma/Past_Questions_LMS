@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\College;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
-class CollegeController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $colleges = College::all();
-        return view('admin.colleges.show', compact('colleges'));
-
+        $courses = Course::all();
+        return view('admin.courses.show', compact('courses'));
     }
 
     /**
@@ -23,7 +22,7 @@ class CollegeController extends Controller
      */
     public function create()
     {
-        return view('admin.colleges.create');
+        return view('admin.courses.create');
     }
 
     /**
@@ -31,23 +30,21 @@ class CollegeController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $formInput = $request->validate([
             'name' => 'required',
-            'abbr' => 'required',
+            'course_code' => 'required',
             'description' => 'nullable'
         ]);
 
-        College::create($formInput);
+        Course::create($formInput);
 
-        return redirect()->route('admin.colleges.index')->with('success', 'College Created successfully');
-
+        return redirect()->route('admin.courses.index')->with('success', 'Course Created successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Course $course)
     {
         //
     }
@@ -55,36 +52,33 @@ class CollegeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(College $college)
+    public function edit(Course $course)
     {
-        return view('admin.colleges.edit', compact('college'));
+        return view('admin.courses.edit', compact('course'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, College $college)
+    public function update(Request $request, Course $course)
     {
         $formInput = $request->validate([
             'name' => 'required',
-            'abbr' => 'required',
+            'course_code' => 'required',
             'description' => 'nullable'
         ]);
 
-        $college->update($formInput);
+        $course->update($formInput);
 
-        return redirect()->route('admin.colleges.index')->with('success', 'College Updated successfully');
-
+        return redirect()->route('admin.courses.index')->with('success', 'course Updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Course $course)
     {
-        // dd($id);
-        College::destroy($id);
+        $course->delete();
         return redirect()->route('admin.colleges.index')->with('success', 'College deleted successfully');
-
     }
 }

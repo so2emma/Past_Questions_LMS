@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CollegeController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\ProgrammeController;
+use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +41,7 @@ Route::prefix("admin")->name("admin.")->group(function() {
         Route::resource('colleges', CollegeController::class);
         Route::resource('departments', DepartmentController::class);
         Route::resource('programmes', ProgrammeController::class);
+        Route::resource('courses', CourseController::class);
+        Route::resource('questions', QuestionController::class);
     });
 });
