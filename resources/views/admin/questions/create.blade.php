@@ -16,15 +16,15 @@
     </div>
 
     <div class="container my-5 border border-radius">
-        <form action="{{ route('admin.questions.store') }}" method="POST" class="m-3">
+        <form action="{{ route('admin.questions.store') }}" method="POST" class="m-3" enctype="multipart/form-data">
             @csrf
             {{-- relationship with course --}}
             <div class="mb-3">
-                <label for="course_id" class="form-label">question course</label>
+                <label for="course_id" class="form-label">Course</label>
                 <select class="form-select" name="course_id" id="">
                     <option selected value=""></option>
                     @foreach ($courses as $course)
-                    <option value="{{$course->id }}"> {{ $course->name }}</option>
+                        <option value="{{ $course->id }}"> {{ $course->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -33,28 +33,19 @@
             @enderror
 
             <div class="mb-3">
-                <label for="name" class="form-label">question Name</label>
-                <input type="name" class="form-control" name="name" value="{{ old('name') }}">
+                <label for="session" class="form-label">Session</label>
+                <input type="session" class="form-control" name="session" value="{{ old('session') }}">
             </div>
-            @error('name')
+            @error('session')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-            <div class="mb-3">
-                <label for="abbr" class="form-label">question Acronym</label>
-                <input type="abbr" class="form-control" name="abbr" value="{{ old('abbr') }}">
+            <div class="input-group mb-3">
+                <input type="file" name="question_file"  class="form-control" id="question_file">
+                <label class="input-group-text" for="question_file">Upload Question</label>
             </div>
-            @error('abbr')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
 
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea type="description" class="form-control" name="description">
-                    {{ old('name') }}
-        </textarea>
-            </div>
-            @error('description')
+            @error('question_file')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 

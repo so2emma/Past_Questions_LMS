@@ -1,16 +1,16 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Show Departments')
+@section('title', 'Show Questions')
 
 @section('content')
     <div class="container my-5">
         <div class="d-flex justify-content-between">
             <span class="h4  me-auto fw-bold">
-                Displaying all Departments
+                Displaying all Questions
             </span>
 
             <span>
-                <a href="{{ route('admin.departments.create') }}" class="btn btn-success">Create</a>
+                <a href="{{ route('admin.questions.create') }}" class="btn btn-success">Create</a>
             </span>
         </div>
 
@@ -26,29 +26,25 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">College</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Acronym</th>
-                    <th scope="col">actions</th>
+                    <th scope="col">Course Code</th>
+                    <th scope="col">Session</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 $i = 1;
                 ?>
-                @foreach ($departments as $department)
+                @foreach ($questions as $question)
                     <tr>
 
                         <th scope="row">{{ $i++ }}</th>
-                        <td> {{ $department->college->abbr }} </td>
-                        <td> {{ $department->name }} </td>
-                        <td> {{ $department->description }} </td>
-                        <td> {{ $department->abbr }} </td>
+                        <td> {{ $question->course->course_code }} </td>
+                        <td> {{ $question->session }} </td>
                         <td>
                             <span class="d-flex justify-content-center">
-                                <a href="{{ route('admin.departments.edit', $department->id) }}" class="btn btn-success mx-1">Edit</a>
-                                <form action="{{ route('admin.departments.destroy', $department->id) }}" method="POST">
+                                <a href="{{ route('admin.questions.edit', $question->id) }}" class="btn btn-success mx-1">Edit</a>
+                                <form action="{{ route('admin.questions.destroy', $question->id) }}" method="POST">
                                     @csrf
                                     @method("DELETE")
                                     <button type="submit" class="btn btn-danger">Delete</button>

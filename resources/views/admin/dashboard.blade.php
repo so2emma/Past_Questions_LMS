@@ -17,27 +17,27 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="p-5 fw-bold h4 border bg-primary text-white">
+                    <div class="p-5 fw-bold h4 border bg-secondary text-white">
                         <a href="{{route('admin.departments.index')}}" class="link-light">Departments</a>
                         <p class="fw-light p-2">NO: 0 </p>
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="p-5 fw-bold h4 border bg-primary text-white">
+                    <div class="p-5 fw-bold h4 border bg-success text-white">
                         <a href="{{route('admin.programmes.index')}}" class="link-light">Programmes</a>
                         <p class="fw-light p-2">NO: 0 </p>
                     </div>
                 </div>
 
                 <div class="col-3">
-                    <div class="p-5 fw-bold h4 border bg-primary text-white">
+                    <div class="p-5 fw-bold h4 border bg-warning text-white">
                         <a href="{{route('admin.courses.index')}}" class="link-light">Courses</a>
                         <p class="fw-light p-2">NO: 0 </p>
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="p-5 fw-bold h4 border bg-primary text-white">
-                        Questions
+                    <div class="p-5 fw-bold h4 border bg-danger text-white">
+                        <a href="{{route('admin.questions.index')}}" class="link-light">Questions</a>
                         <p class="fw-light p-2">NO: 0 </p>
                     </div>
                 </div>
