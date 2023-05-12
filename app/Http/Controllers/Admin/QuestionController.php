@@ -15,7 +15,7 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::all();
-        return view('admin.questions.show', compact('questions'));
+        return view('admin.questions.index', compact('questions'));
     }
 
     /**
@@ -62,7 +62,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        return view('admin.questions.show', compact('question'));
     }
 
     /**

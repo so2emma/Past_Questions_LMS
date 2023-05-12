@@ -15,7 +15,7 @@ class ProgrammeController extends Controller
     public function index()
     {
         $programmes = Programme::all();
-        return view('admin.programmes.show', compact('programmes'));
+        return view('admin.programmes.index', compact('programmes'));
     }
 
     /**

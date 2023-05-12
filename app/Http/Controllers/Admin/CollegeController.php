@@ -14,7 +14,7 @@ class CollegeController extends Controller
     public function index()
     {
         $colleges = College::all();
-        return view('admin.colleges.show', compact('colleges'));
+        return view('admin.colleges.index', compact('colleges'));
 
     }
 
