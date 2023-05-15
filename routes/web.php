@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\CollegeController;
-use App\Http\Controllers\Admin\CourseController;
-use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\Admin\ProgrammeController;
-use App\Http\Controllers\Admin\QuestionController;
-use App\Http\Middleware\PreventBackHistory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\PreventBackHistory;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\CollegeController;
+use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\Admin\ProgrammeController;
+use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingpage');
 });
 
 Auth::routes();
@@ -43,5 +45,6 @@ Route::prefix("admin")->name("admin.")->group(function() {
         Route::resource('programmes', ProgrammeController::class);
         Route::resource('courses', CourseController::class);
         Route::resource('questions', QuestionController::class);
+        Route::resource('sessions', SessionController::class);
     });
 });

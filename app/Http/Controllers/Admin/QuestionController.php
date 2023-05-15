@@ -34,7 +34,7 @@ class QuestionController extends Controller
     {
         $formInput = $request->validate([
             'course_id' => 'required',
-            'session' => 'required',
+            'session_id' => 'required',
             'question_file' => 'required|mimes:pdf|max:2048'
         ]);
 
@@ -49,7 +49,7 @@ class QuestionController extends Controller
 
             Question::create([
                 'course_id' => $formInput['course_id'],
-                'session' => $formInput['session'],
+                'session_id' => $formInput['session_id'],
                 'path' => $path
             ]);
         }

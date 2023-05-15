@@ -11,7 +11,7 @@ class Question extends Model
 
     protected $fillable = [
         'course_id',
-        'session',
+        'session_id',
         'path',
     ];
 
