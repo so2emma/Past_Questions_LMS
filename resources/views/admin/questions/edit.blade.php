@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Edit department')
+@section('question', 'active')
 
 @section('content')
     <div class="container my-5">

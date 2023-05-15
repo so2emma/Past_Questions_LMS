@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Create Course')
+@section('course', 'active')
 
 @section('content')
     <div class="container my-5">
