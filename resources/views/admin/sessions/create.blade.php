@@ -14,11 +14,6 @@
             </span>
         </div>
     </div>
-    @if (session('failure'))
-        <div class="alert alert-danger">
-            {{ session('failure') }}
-        </div>
-    @endif
 
     <div class="container my-5 border border-radius">
         <form action="{{ route('admin.sessions.store') }}" method="POST" class="m-3">

@@ -20,6 +20,16 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if (session('failure'))
+            <div class="alert alert-danger">
+                {{ session('failure') }}
+            </div>
+        @endif
+        @if (session('message'))
+            <div class="alert alert-danger">
+                {{ session('message') }}
+            </div>
+        @endif
     </div>
 
     <div class="container my-5">

@@ -14,17 +14,6 @@
             </span>
         </div>
 
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if (session('failure'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
     </div>
 
     <div class="container my-5">

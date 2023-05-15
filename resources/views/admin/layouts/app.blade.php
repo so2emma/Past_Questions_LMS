@@ -24,7 +24,7 @@
 </head>
 
 <body>
- 
+
 
     <!--Main Navigation-->
     <header>
@@ -127,6 +127,21 @@
     <!--Main layout-->
     <main style="margin-top: 58px;">
         <div class="container pt-4">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('failure'))
+                <div class="alert alert-danger">
+                    {{ session('failure') }}
+                </div>
+            @endif
+            @if (session('message'))
+                <div class="alert alert-danger">
+                    {{ session('message') }}
+                </div>
+            @endif
             @yield('content')
         </div>
     </main>

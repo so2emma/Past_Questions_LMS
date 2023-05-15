@@ -44,7 +44,7 @@ Route::prefix("admin")->name("admin.")->group(function() {
         Route::resource('departments', DepartmentController::class);
         Route::resource('programmes', ProgrammeController::class);
         Route::resource('courses', CourseController::class);
-        Route::resource('questions', QuestionController::class);
+        Route::resource('questions', QuestionController::class)->middleware('ChaeckCourseAndSession');
         Route::resource('sessions', SessionController::class);
     });
 });

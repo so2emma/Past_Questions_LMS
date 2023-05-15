@@ -15,13 +15,6 @@
             </span>
         </div>
 
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-    </div>
-
     <div class="container my-5">
         <table class="table table-striped text-center">
             <thead>
