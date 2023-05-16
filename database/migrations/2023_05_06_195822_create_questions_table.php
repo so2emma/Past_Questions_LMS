@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('course_id')->constrained();
             $table->foreignId('session_id')->constrained();
-            $table->string('session');
             $table->string('path');
             $table->timestamps();
         });

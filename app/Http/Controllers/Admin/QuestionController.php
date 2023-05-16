@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Question;
+use App\Models\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller
 {
@@ -24,7 +26,8 @@ class QuestionController extends Controller
     public function create()
     {
         $courses = Course::all();
-        return view('admin.questions.create', compact('courses'));
+        $sessions = Session::all();
+        return view('admin.questions.create', compact('courses', 'sessions'));
     }
 
     /**
@@ -42,8 +45,8 @@ class QuestionController extends Controller
 
         // This is to get the uploaded file
 
-        $destination_name = str_replace(' ', '',$course->course_code);
-        $file_name = str_replace(' ', '',$course->course_code). '_' . str_replace('/','',$request->session).'.'.$request->question_file->getClientOriginalExtension();
+        $destination_name = str_replace(' ', '', $course->course_code);
+        $file_name = str_replace(' ', '', $course->course_code) . '_' . str_replace('/', '', $request->session) . '.' . $request->question_file->getClientOriginalExtension();
         if ($request->file('question_file')) {
             $path = $request->file('question_file')->storeAs($destination_name, $file_name);
 
@@ -70,7 +73,9 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        $courses = Course::all();
+        $sessions = Session::all();
+        return view('admin.questions.edit', compact('courses', 'sessions','question'));
     }
 
     /**
@@ -78,7 +83,37 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        // dd($request->question_file);
+        $formInput = $request->validate([
+            'course_id' => 'required',
+            'session_id' => 'required',
+            'question_file' => 'required|mimes:pdf|max:2048'
+        ]);
+
+
+        dd($formInput);
+        // if($request->hasFile('question_file'))
+        // {
+        //     Storage::delete($question->path);
+
+        //     $course = Course::findOrFail($request->course_id);
+
+        //     // This is to get the uploaded file
+
+        //     $destination_name = str_replace(' ', '', $course->course_code);
+        //     $file_name = str_replace(' ', '', $course->course_code) . '_' . str_replace('/', '', $request->session) . '.' . $request->question_file->getClientOriginalExtension();
+        //     if ($request->file('question_file')) {
+        //         $path = $request->file('question_file')->storeAs($destination_name, $file_name);
+
+        //         $question->update([
+        //             'course_id' => $formInput['course_id'],
+        //             'session_id' => $formInput['session_id'],
+        //             'path' => $path
+        //         ]);
+        //     }
+        // }
+
+        // return redirect()->route('admin.questions.index')->with('success', 'question Created successfully');
     }
 
     /**

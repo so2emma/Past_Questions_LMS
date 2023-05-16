@@ -14,4 +14,9 @@ class Session extends Model
         'session_end',
         'session_name'
     ];
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

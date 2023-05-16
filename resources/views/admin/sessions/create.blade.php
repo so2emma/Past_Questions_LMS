@@ -27,7 +27,7 @@
             @enderror
 
             <div class="mb-3">
-                <label for="session_end" class="form-label">Session Start</label>
+                <label for="session_end" class="form-label">Session End</label>
                 <input type="number" class="form-control" name="session_end" value="{{ old('session_end') }}">
             </div>
             @error('session_end')

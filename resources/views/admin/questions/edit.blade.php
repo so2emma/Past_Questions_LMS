@@ -1,62 +1,60 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Edit department')
+@section('title', 'Edit Question')
 @section('question', 'active')
 
 @section('content')
     <div class="container my-5">
         <div class="d-flex justify-content-between">
             <span class="h4  me-auto fw-bold">
-                Edit department
+                Edit question
             </span>
 
             <span>
-                <a href="{{ route('admin.departments.index') }}" class="btn btn-success">View departments</a>
+                <a href="{{ route('admin.questions.index') }}" class="btn btn-success">View questions</a>
             </span>
         </div>
     </div>
 
     <div class="container my-5 border border-radius">
-        <form action="{{ route('admin.departments.update', $department->id) }}" method="POST" class="m-3">
+        <form action="{{ route('admin.questions.update', $question->id) }}" method="POST" class="m-3">
             @csrf
             @method('PUT')
 
-            {{-- relationship with College --}}
+            {{-- relationship with course --}}
             <div class="mb-3">
-                <label for="college_id" class="form-label">Department College</label>
-                <select class="form-select" name="college_id" >
-                    @foreach ($colleges as $college)
-                        <option {{ $college->id === $department->college->id ? 'selected' : '' }} value="{{ $college->id }}"> {{ $college->name }}</option>
+                <label for="course_id" class="form-label">Course</label>
+                <select class="form-select" name="course_id">
+                    @foreach ($courses as $course)
+                        <option {{ $course->id === $question->course->id ? 'selected' : '' }} value="{{ $course->id }}">
+                            {{ $course->name }}</option>
                     @endforeach
                 </select>
             </div>
-            @error('college_id')
+            @error('course_id')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
+            {{-- relationship with session --}}
             <div class="mb-3">
-                <label for="name" class="form-label">department Name</label>
-                <input type="name" class="form-control" name="name" value="{{ $department->name }}">
+                <label for="session_id" class="form-label">session</label>
+                <select class="form-select" name="session_id">
+                    @foreach ($sessions as $session)
+                        <option {{ $session->id === $question->session->id ? 'selected' : '' }} value="{{ $session->id }}">
+                            {{ $session->session_name }}</option>
+                    @endforeach
+                </select>
             </div>
-            @error('name')
+            @error('session_id')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-
-            <div class="mb-3">
-                <label for="abbr" class="form-label">department Acronym</label>
-                <input type="abbr" class="form-control" name="abbr" value="{{ $department->abbr }}">
+            {{-- File Upload --}}
+            <div class="input-group mb-3">
+                <input type="file" name="question_file" class="form-control" id="question_file">
+                <label class="input-group-text" for="question_file">Upload Question</label>
             </div>
-            @error('abbr')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
 
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea type="description" class="form-control" name="description">
-                    {{ $department->description }}
-        </textarea>`
-            </div>
-            @error('description')
+            @error('question_file')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 

@@ -7,7 +7,7 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between">
             <span class="h4  me-auto fw-bold">
-                 {{ $question->course->course_code.' '. $question->session.' session' }}
+                 {{ $question->course->course_code.' '. $question->session->session_name.' session' }}
             </span>
 
             <span>

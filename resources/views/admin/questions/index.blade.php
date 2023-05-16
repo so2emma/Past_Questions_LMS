@@ -14,22 +14,6 @@
                 <a href="{{ route('admin.questions.create') }}" class="btn btn-success">Create</a>
             </span>
         </div>
-
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if (session('failure'))
-            <div class="alert alert-danger">
-                {{ session('failure') }}
-            </div>
-        @endif
-        @if (session('message'))
-            <div class="alert alert-danger">
-                {{ session('message') }}
-            </div>
-        @endif
     </div>
 
     <div class="container my-5">
@@ -51,7 +35,7 @@
 
                         <th scope="row">{{ $i++ }}</th>
                         <td> <a href="{{ route('admin.questions.show', $question->id) }}">{{ $question->course->course_code }}</a>  </td>
-                        <td> {{ $question->session }} </td>
+                        <td> {{ $question->session->session_name }} </td>
                         <td>
                             <span class="d-flex justify-content-center">
                                 <a href="{{ route('admin.questions.edit', $question->id) }}" class="btn btn-success mx-1">Edit</a>

@@ -33,16 +33,22 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
+            {{-- relationship with session --}}
             <div class="mb-3">
-                <label for="session" class="form-label">Session</label>
-                <input type="session" class="form-control" name="session" value="{{ old('session') }}">
+                <label for="session_id" class="form-label">session</label>
+                <select class="form-select" name="session_id" id="">
+                    <option selected value=""></option>
+                    @foreach ($sessions as $session)
+                        <option value="{{ $session->id }}"> {{ $session->session_name }}</option>
+                    @endforeach
+                </select>
             </div>
-            @error('session')
+            @error('session_id')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
             <div class="input-group mb-3">
-                <input type="file" name="question_file"  class="form-control" id="question_file">
+                <input type="file" name="question_file" class="form-control" id="question_file">
                 <label class="input-group-text" for="question_file">Upload Question</label>
             </div>
 

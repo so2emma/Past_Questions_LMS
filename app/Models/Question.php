@@ -15,23 +15,13 @@ class Question extends Model
         'path',
     ];
 
-    public function college()
-    {
-        return $this->belongsTo(College::class);
-    }
-
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
-
-    public function programme()
-    {
-        return $this->belongsTo(Programme::class);
-    }
-
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function session()
+    {
+        return $this->belongsTo(Session::class);
     }
 }

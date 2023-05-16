@@ -22,14 +22,14 @@ class CheckCourseAndSession
         $course = Course::count();
         $session = Session::count();
 
-        if($course == 0) {
-            redirect()->route('admin.courses.create')->with('message', 'You need to create a Course before you can create a Question');
+        if ($course == 0) {
+            return redirect()->route('admin.courses.create')->with('message', 'You need to create a Course before you can create a Question');
+        }
+        if ($session == 0) {
+            return redirect()->route('admin.sessions.create')->with('message', 'You need to create a session before you can create a Question');
         }
 
-        if($session == 0) {
-            redirect()->route('admin.sessions.create')->with('message', 'You need to create a session before you can create a Question');
-        }
 
-            return $next($request);
+        return $next($request);
     }
 }
