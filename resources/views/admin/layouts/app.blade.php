@@ -34,12 +34,13 @@
                 <div class="position-sticky">
                     <div class="list-group list-group-flush mx-3 mt-4">
                         <a href="{{ route('admin.dashboard') }}"
-                            class="list-group-item list-group-item-action py-4 fw-bold @yield('dashboard')"
-                            aria-current="true">
-                            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
-                        </a>
+                            class="list-group-item list-group-item-action py-4 fw-bold @yield('dashboard')">
+                            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span></a>
                         <a href="#" class="list-group-item list-group-item-action py-4 fw-bold @yield('user')"><i
                                 class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
+                        <a href="{{ route('admin.sessions.index') }}"
+                            class="list-group-item list-group-item-action py-4 fw-bold @yield('session')"><i
+                            class="fa-solid fa-calendar-days me-3"></i><span>Sessions</span></a>
                         <a href="{{ route('admin.courses.index') }}"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('course')"><i
                                 class="fa-solid fa-graduation-cap me-3"></i><span>Courses</span></a>

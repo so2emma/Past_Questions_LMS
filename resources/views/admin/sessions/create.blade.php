@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Create Session')
+@section('session', 'active')
 
 @section('content')
     <div class="container my-5">
