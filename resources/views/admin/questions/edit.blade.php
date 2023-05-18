@@ -17,7 +17,7 @@
     </div>
 
     <div class="container my-5 border border-radius">
-        <form action="{{ route('admin.questions.update', $question->id) }}" method="POST" class="m-3">
+        <form action="{{ route('admin.questions.update', $question->id) }}" method="POST" class="m-3" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -25,6 +25,7 @@
             <div class="mb-3">
                 <label for="course_id" class="form-label">Course</label>
                 <select class="form-select" name="course_id">
+                    <option value=""></option>
                     @foreach ($courses as $course)
                         <option {{ $course->id === $question->course->id ? 'selected' : '' }} value="{{ $course->id }}">
                             {{ $course->name }}</option>
@@ -39,6 +40,7 @@
             <div class="mb-3">
                 <label for="session_id" class="form-label">session</label>
                 <select class="form-select" name="session_id">
+                    <option value=""></option>
                     @foreach ($sessions as $session)
                         <option {{ $session->id === $question->session->id ? 'selected' : '' }} value="{{ $session->id }}">
                             {{ $session->session_name }}</option>
@@ -48,6 +50,7 @@
             @error('session_id')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+
             {{-- File Upload --}}
             <div class="input-group mb-3">
                 <input type="file" name="question_file" class="form-control" id="question_file">
@@ -59,7 +62,7 @@
             @enderror
 
             <div class="mb-3">
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Upload</button>
             </div>
 
         </form>

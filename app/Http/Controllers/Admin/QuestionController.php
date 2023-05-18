@@ -42,11 +42,12 @@ class QuestionController extends Controller
         ]);
 
         $course = Course::findOrFail($request->course_id);
+        $session = Session::findOrFail($request->session_id);
 
         // This is to get the uploaded file
 
         $destination_name = str_replace(' ', '', $course->course_code);
-        $file_name = str_replace(' ', '', $course->course_code) . '_' . str_replace('/', '', $request->session) . '.' . $request->question_file->getClientOriginalExtension();
+        $file_name = str_replace(' ', '', $course->course_code) . '_' . str_replace('/', '', $session->session_name) . '.' . $request->question_file->getClientOriginalExtension();
         if ($request->file('question_file')) {
             $path = $request->file('question_file')->storeAs($destination_name, $file_name);
 
@@ -57,7 +58,7 @@ class QuestionController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.questions.index')->with('success', 'question Created successfully');
+        return redirect()->route('admin.questions.index')->with('success', 'Question created successfully');
     }
 
     /**
@@ -75,52 +76,51 @@ class QuestionController extends Controller
     {
         $courses = Course::all();
         $sessions = Session::all();
-        return view('admin.questions.edit', compact('courses', 'sessions','question'));
+        return view('admin.questions.edit', compact('courses', 'sessions', 'question'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Question $question)
+    // public function update(Request $request, Question $question)
+    public function update(Request $request, $id)
     {
-        // dd($request->question_file);
         $formInput = $request->validate([
             'course_id' => 'required',
             'session_id' => 'required',
-            'question_file' => 'required|mimes:pdf|max:2048'
+            'question_file' => 'nullable|file|max:2048'
         ]);
 
+        $course = Course::findOrFail($formInput['course_id']);
+        $session = Session::findOrFail($formInput['session_id']);
 
-        dd($formInput);
-        // if($request->hasFile('question_file'))
-        // {
-        //     Storage::delete($question->path);
 
-        //     $course = Course::findOrFail($request->course_id);
 
-        //     // This is to get the uploaded file
+        if ($request->hasFile('question_file')) {
+            $question = Question::findOrFail($id);
+            $question->course_id = $formInput['course_id'];
+            $question->session_id = $formInput['session_id'];
+            // Storage::delete($question->path);
+            Storage::delete($question->path);
+            $destination_name = str_replace(' ', '', $course->course_code);
+            $file_name = str_replace(' ', '', $course->course_code) . '_' . str_replace('/', '', $session->session_name) . '.' . $request->question_file->getClientOriginalExtension();
+            $path = $request->file('question_file')->storeAs($destination_name, $file_name);
+            $question->path = $path;
+            $question->save();
+        }
 
-        //     $destination_name = str_replace(' ', '', $course->course_code);
-        //     $file_name = str_replace(' ', '', $course->course_code) . '_' . str_replace('/', '', $request->session) . '.' . $request->question_file->getClientOriginalExtension();
-        //     if ($request->file('question_file')) {
-        //         $path = $request->file('question_file')->storeAs($destination_name, $file_name);
 
-        //         $question->update([
-        //             'course_id' => $formInput['course_id'],
-        //             'session_id' => $formInput['session_id'],
-        //             'path' => $path
-        //         ]);
-        //     }
-        // }
-
-        // return redirect()->route('admin.questions.index')->with('success', 'question Created successfully');
+        return redirect()->route('admin.questions.index')->with('success', 'Question updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Question $question)
     {
-        //
+        Storage::delete($question->path);
+        $question->delete();
+        return redirect()->route('admin.questions.index')->with('success', 'Questions deleted successfully');
     }
 }
