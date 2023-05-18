@@ -6,6 +6,7 @@ use App\Http\Middleware\PreventBackHistory;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CollegeController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ProgrammeController;
 use App\Http\Controllers\Admin\DepartmentController;
@@ -38,7 +39,8 @@ Route::prefix("admin")->name("admin.")->group(function() {
     });
 
     Route::middleware(['auth:admin', 'PreventBackHistory'])->group(function() {
-        Route::view('/dashboard','admin.dashboard')->name("dashboard");
+        // Route::view('/dashboard','admin.dashboard')->name("dashboard");
+        Route::get('/dashboard', [DashboardController::class, "dashboard"])->name('dashboard');
         Route::post("/logout", [AuthController::class, "logout"])->name("logout");
         Route::resource('colleges', CollegeController::class);
         Route::resource('departments', DepartmentController::class);
