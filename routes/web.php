@@ -54,9 +54,6 @@ Route::prefix("admin")->name("admin.")->group(function() {
         // Route::view('/dashboard','admin.dashboard')->name("dashboard");
         Route::get('/dashboard', [DashboardController::class, "dashboard"])->name('dashboard');
         Route::post("/logout", [AuthController::class, "logout"])->name("logout");
-        Route::resource('colleges', CollegeController::class);
-        Route::resource('departments', DepartmentController::class);
-        Route::resource('programmes', ProgrammeController::class);
         Route::resource('courses', CourseController::class);
         Route::resource('questions', QuestionController::class)->middleware('ChaeckCourseAndSession');
         Route::resource('sessions', SessionController::class);
