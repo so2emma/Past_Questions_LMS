@@ -28,7 +28,7 @@
                     <option value=""></option>
                     @foreach ($courses as $course)
                         <option {{ $course->id === $question->course->id ? 'selected' : '' }} value="{{ $course->id }}">
-                            {{ $course->name }}</option>
+                            {{ $course->course_code }}</option>
                     @endforeach
                 </select>
             </div>

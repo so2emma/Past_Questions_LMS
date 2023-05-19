@@ -36,7 +36,7 @@
                         <a href="{{ route('user.dashboard') }}"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('dashboard')">
                             <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span></a>
-                        <a href="#" class="list-group-item list-group-item-action py-4 fw-bold @yield('user')"><i
+                        <a href="{{ route('user.available.course') }}" class="list-group-item list-group-item-action py-4 fw-bold @yield('enroll')"><i
                                 class="fas fa-users fa-fw me-3"></i><span>Enrollement</span></a>
                         <a href="#"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('session')"><i

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ProgrammeController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\SessionController;
+use App\Http\Controllers\User\UserCourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,17 +33,22 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+// USER ROUTES
 Route::prefix("user")->name('user.')->group(function() {
     Route::middleware('guest:web')->group(function() {
 
     });
     Route::middleware('auth:web')->group(function() {
         Route::view('/dashboard', 'user.dashboard')->name('dashboard');
+        Route::get('/enroll', [UserCourseController::class, 'view_course'])->name('available.course');
+        Route::post('/enroll', [UserCourseController::class, 'search_course'])->name('available.course');
+        Route::post('course/{course}/enroll', [UserCourseController::class, 'enroll'])->name('course.enroll');
+        Route::post('course/{course}/unenroll', [UserCourseController::class, 'unenroll'])->name('course.unenroll');
     });
 });
 
 
-//Admin Routes
+//ADMIN ROUTES
 Route::prefix("admin")->name("admin.")->group(function() {
     Route::middleware(["guest:admin", "PreventBackHistory"])->group(function() {
         Route::view('/login','admin.auth.login')->name("login");

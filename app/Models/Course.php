@@ -15,23 +15,13 @@ class Course extends Model
         'description'
     ];
 
-    public function college()
-    {
-        return $this->belongsTo(College::class);
-    }
-
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
-
-    public function programme()
-    {
-        return $this->belongsTo(Programme::class);
-    }
-
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }
