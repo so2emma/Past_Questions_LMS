@@ -24,13 +24,25 @@ use App\Http\Controllers\Admin\SessionController;
 */
 
 Route::get('/', function () {
-    return view('landingpage');
+    return view('guest.index');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::prefix("user")->name('user.')->group(function() {
+    Route::middleware('guest:web')->group(function() {
+
+    });
+    Route::middleware('auth:web')->group(function() {
+        Route::view('/dashboard', 'user.dashboard')->name('dashboard');
+    });
+});
+
+
+//Admin Routes
 Route::prefix("admin")->name("admin.")->group(function() {
     Route::middleware(["guest:admin", "PreventBackHistory"])->group(function() {
         Route::view('/login','admin.auth.login')->name("login");
