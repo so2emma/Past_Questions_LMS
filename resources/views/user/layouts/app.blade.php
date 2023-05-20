@@ -35,12 +35,15 @@
                     <div class="list-group list-group-flush mx-3 mt-4">
                         <a href="{{ route('user.dashboard') }}"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('dashboard')">
-                            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span></a>
-                        <a href="{{ route('user.available.course') }}" class="list-group-item list-group-item-action py-4 fw-bold @yield('enroll')"><i
-                                class="fas fa-users fa-fw me-3"></i><span>Enrollement</span></a>
-                        <a href="#"
-                            class="list-group-item list-group-item-action py-4 fw-bold @yield('session')"><i
-                            class="fa-solid fa-calendar-days me-3"></i><span>Courses</span></a>
+                            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+                        </a>
+                        <a href="{{ route('user.available.course') }}"
+                            class="list-group-item list-group-item-action py-4 fw-bold @yield('enrol')"><i
+                                class="fas fa-users fa-fw me-3"></i><span>Enrollement</span>
+                            </a>
+                        <a href="{{ route('user.enrolled.course') }}"
+                            class="list-group-item list-group-item-action py-4 fw-bold @yield('courses')"><i
+                                class="fa-solid fa-calendar-days me-3"></i><span>Courses</span></a>
                         <a href="#" class="list-group-item list-group-item-action py-4 fw-bold "><i
                                 class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
                     </div>
@@ -70,8 +73,7 @@
                     @guest('web')
                         {{-- Login  --}}
                         <li class="nav-item">
-                            <a class="nav-link @yield('login')" aria-current="page"
-                                href="{{ route('login') }}">Login</a>
+                            <a class="nav-link @yield('login')" aria-current="page" href="{{ route('login') }}">Login</a>
                         </li>
                     @endguest
 
@@ -101,8 +103,7 @@
                                         Logout
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </li>

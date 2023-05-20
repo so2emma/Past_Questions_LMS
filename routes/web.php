@@ -44,6 +44,10 @@ Route::prefix("user")->name('user.')->group(function() {
         Route::post('/enroll', [UserCourseController::class, 'search_course'])->name('available.course');
         Route::post('course/{course}/enroll', [UserCourseController::class, 'enroll'])->name('course.enroll');
         Route::post('course/{course}/unenroll', [UserCourseController::class, 'unenroll'])->name('course.unenroll');
+        Route::delete('course/{course}/unenroll', [UserCourseController::class, 'unenroll'])->name('course.unenroll');
+        Route::get('courses/enrolled', [UserCourseController::class, 'enrolled_courses'])->name('enrolled.course');
+        Route::get('course/{course}/questions', [UserCourseController::class, 'view_questions'])->name('course.questions');
+        Route::get('questions/{question}', [UserCourseController::class, 'show_question'])->name('show.question');
     });
 });
 

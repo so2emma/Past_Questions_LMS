@@ -1,26 +1,26 @@
 @extends('user.layouts.app')
 
-@section('title', 'Registered Courses')
+@section('title', 'Questions')
 @section('courses', 'active')
 
 @section('content')
     <div class="container">
         <div class="m-5">
-            <h4>List of registered courses</h4>
+            <h4>{{ $course->course_code }} Questions</h4>
             <div class="container">
 
 
-                @if ($courses->isEmpty())
+                @if ($questions->isEmpty())
                     <div class="alert alert-danger">
-                        <p>No courses enrolled yet.</p>
+                        <p>No questions Uploaded yet</p>
                     </div>
                 @else
-                    @foreach ($courses as $course)
+                    @foreach ($questions as $question)
                         <div class="card mb-3">
                             <div class="card-body">
                                 <p class="h3 m-3">
-                                    <a href="{{ route('user.course.questions', ['course' => $course->id]) }}">
-                                        {{ $course->course_code . '-' . $course->name }}
+                                    <a href="{{ route('user.show.question', ['question' => $question->id]) }}">
+                                        {{ $course->course_code . '-' . $course->name . ' Session ' . $question->session->session_name }}
                                     </a>
                                 </p>
                             </div>

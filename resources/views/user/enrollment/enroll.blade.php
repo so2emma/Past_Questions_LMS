@@ -1,7 +1,7 @@
 @extends('user.layouts.app')
 
 @section('title', 'Course enroll')
-@section('enroll', 'active')
+@section('enrol', 'active')
 
 @section('content')
     <div class="container">
