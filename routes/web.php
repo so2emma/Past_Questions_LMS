@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ProgrammeController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\SessionController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\UserCourseController;
 
 /*
@@ -67,5 +68,6 @@ Route::prefix("admin")->name("admin.")->group(function() {
         Route::resource('courses', CourseController::class);
         Route::resource('questions', QuestionController::class)->middleware('ChaeckCourseAndSession');
         Route::resource('sessions', SessionController::class);
+        Route::resource('users', UserController::class);
     });
 });

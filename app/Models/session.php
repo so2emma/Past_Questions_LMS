@@ -19,4 +19,9 @@ class Session extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    public function scopeAll()
+    {
+        return $query->sort
+    }
 }

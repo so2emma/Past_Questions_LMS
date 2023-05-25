@@ -36,7 +36,7 @@
                         <a href="{{ route('admin.dashboard') }}"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('dashboard')">
                             <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span></a>
-                        <a href="#" class="list-group-item list-group-item-action py-4 fw-bold @yield('user')"><i
+                        <a href="{{ route('admin.users.index') }}" class="list-group-item list-group-item-action py-4 fw-bold @yield('user')"><i
                                 class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
                         <a href="{{ route('admin.sessions.index') }}"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('session')"><i
