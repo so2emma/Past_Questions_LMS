@@ -34,10 +34,11 @@
                     <tr>
 
                         <th scope="row">{{ $i++ }}</th>
-                        <td> <a href="{{ route('admin.questions.show', $question->id) }}">{{ $question->course->course_code }}</a>  </td>
+                        <td> {{ $question->course->course_code }}</td>
                         <td> {{ $question->session->session_name }} </td>
                         <td>
                             <span class="d-flex justify-content-center">
+                                <a href="{{ route('admin.questions.show', $question->id) }}" class="btn btn-primary mx-1">View</a>
                                 <a href="{{ route('admin.questions.edit', $question->id) }}" class="btn btn-success mx-1">Edit</a>
                                 <form action="{{ route('admin.questions.destroy', $question->id) }}" method="POST">
                                     @csrf
