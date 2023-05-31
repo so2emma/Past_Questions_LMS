@@ -35,7 +35,7 @@
 
             {{-- relationship with session --}}
             <div class="mb-3">
-                <label for="session_id" class="form-label">session</label>
+                <label for="session_id" class="form-label">Session</label>
                 <select class="form-select" name="session_id" id="">
                     <option selected value=""></option>
                     @foreach ($sessions as $session)

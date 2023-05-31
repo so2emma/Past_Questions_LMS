@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,8 +21,8 @@ class Session extends Model
         return $this->hasMany(Question::class);
     }
 
-    public function scopeAll()
+    public function scopeGetSessionInOrder(Builder $query)
     {
-        return $query->sort
+        return $query->orderBy('session_start', 'asc');
     }
 }

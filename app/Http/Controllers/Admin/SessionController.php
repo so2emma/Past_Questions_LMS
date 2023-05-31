@@ -13,7 +13,7 @@ class SessionController extends Controller
      */
     public function index()
     {
-        $sessions = Session::all();
+        $sessions = Session::getSessionInOrder()->get();
         return view('admin.sessions.index', compact('sessions'));
     }
 
