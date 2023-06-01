@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Title  --}}
-    <title>web @yield('title')</title>
+    <title>User @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -40,10 +40,15 @@
                         <a href="{{ route('user.available.course') }}"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('enrol')"><i
                                 class="fas fa-users fa-fw me-3"></i><span>Enrollement</span>
-                            </a>
+                        </a>
                         <a href="{{ route('user.enrolled.course') }}"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('courses')"><i
-                                class="fa-solid fa-calendar-days me-3"></i><span>Courses</span></a>
+                                class="fa-solid fa-calendar-days me-3"></i><span>Courses</span>
+                        </a>
+                        <a href=""
+                            class="list-group-item list-group-item-action py-4 fw-bold @yield('submissions')"><i
+                                class="fa-solid fa-calendar-days me-3"></i><span>Submissions</span>
+                        </a>
                         <a href="#" class="list-group-item list-group-item-action py-4 fw-bold "><i
                                 class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
                     </div>

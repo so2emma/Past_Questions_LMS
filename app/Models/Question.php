@@ -24,4 +24,9 @@ class Question extends Model
     {
         return $this->belongsTo(Session::class);
     }
+
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class);
+    }
 }

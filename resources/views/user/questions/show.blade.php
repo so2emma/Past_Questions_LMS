@@ -8,6 +8,7 @@
         <div class="d-flex justify-content-between">
             <span class="h4  me-auto fw-bold">
                  {{ $question->course->course_code.' '. $question->session->session_name.' session' }}
+                <a class="btn btn-primary" href="{{ route('user.submission.create', ['question' => $question->id ]) }}">Make A Submission</a>
             </span>
 
             <span>
