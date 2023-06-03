@@ -37,8 +37,6 @@ class SubmissionController extends Controller
 
         $user = Auth::guard('web')->user();
 
-
-
         $destination_name = 'Submissions/'.str_replace(' ','',$question->course->course_code).'/'.$question->session->session_name;
         $file_name = $user->id.'-'.$question->session->session_name;
 
