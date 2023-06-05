@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Grade extends Model
+class Grading extends Model
 {
     use HasFactory;
 
@@ -19,5 +19,9 @@ class Grade extends Model
     public function submission()
     {
         return $this->belongsTo(Submission::class);
+    }
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

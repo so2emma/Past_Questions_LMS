@@ -26,6 +26,6 @@ class Submission extends Model
 
     public function grades()
     {
-        return $this->hasMany(Grade::class);
+        return $this->hasMany(Grading::class);
     }
 }

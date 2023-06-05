@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Submission::class);
     }
+    public function grading()
+    {
+        return $this->belongsToMany(Grading::class);
+    }
 }
