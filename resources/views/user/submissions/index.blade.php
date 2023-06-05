@@ -1,36 +1,57 @@
 @extends('user.layouts.app')
 
-@section('title', 'Questions')
-@section('courses', 'active')
+@section('title', 'submissions')
+@section('submissions', 'active')
 
 @section('content')
     <div class="container">
         <div class="m-5">
-            <h4 class="h2 fw-bold">{{ $course->course_code }}</h4>
             <div class="container my-5">
-                @if ($questions->isEmpty())
+                @if ($submissions->isEmpty())
                     <div class="alert alert-danger">
-                        <p>No questions Uploaded yet</p>
+                        <p>No submissions made yet</p>
                     </div>
                 @else
-                    @foreach ($questions as $question)
-                        <div class="card mb-3">
-                            <div class="card-body">
+                    @foreach ($submissions as $submission)
+                        <div class="container my-5">
+                            <table class="table table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Course Code</th>
+                                        <th scope="col">Session</th>
+                                        <th scope="col">Time Submitted</th>
+                                        <th scope="col">actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $i = 1;
+                                    ?>
+                                    @foreach ($submissions as $submission)
+                                        <tr>
 
-                                <div class="row align-items-center">
-                                    <div class="col-md-10">
-                                        <h4 class="fw-bold">
-                                            <span>
-                                                {{ $question->session->session_name . ' Session ' }}
-                                            </span>
-                                        </h4>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <a class="btn btn-primary m-2 fw-bold"
-                                            href="{{ route('user.show.question', ['question' => $question->id]) }}">SHOW</a>
-                                    </div>
-                                </div>
-                            </div>
+                                            <th scope="row">{{ $i++ }}</th>
+                                            <td> {{ $submission->question->course->course_code }} </td>
+                                            <td> {{ $submission->question->session->session_name }} </td>
+                                            <td> {{ $submission->created_at->toDayDateTimeString() }} </td>
+                                            <td>
+                                                
+                                                {{-- <span class="d-flex justify-content-center">
+                                                    <a href="{{ route('admin.submissions.edit', $submission->id) }}"
+                                                        class="btn btn-success mx-1">Edit</a>
+                                                    <form action="{{ route('admin.submissions.destroy', $submission->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </span> --}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     @endforeach
                 @endif

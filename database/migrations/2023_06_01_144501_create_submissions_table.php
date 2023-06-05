@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('question_id')->constrained();
-            $table->string('file_path');
+            $table->string('path');
             $table->timestamps();
         });
     }

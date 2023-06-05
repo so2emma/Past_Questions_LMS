@@ -54,6 +54,7 @@ Route::prefix("user")->name('user.')->group(function() {
         Route::get('course/{course}/questions', [UserCourseController::class, 'view_questions'])->name('course.questions');
         Route::get('questions/{question}', [UserCourseController::class, 'show_question'])->name('show.question');
         //  SUBMISSION MANAGEMENT
+        Route::get('submission/{user}', [SubmissionController::class, 'index'])->name('submissions.index');
         Route::get('questions/{question}/submissions/create', [SubmissionController::class, 'create'])->name('submission.create');
         Route::post('questions/{question}/submissions', [SubmissionController::class, 'store'])->name('submission.store');
     });

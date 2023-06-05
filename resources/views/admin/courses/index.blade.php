@@ -15,41 +15,42 @@
             </span>
         </div>
 
-    <div class="container my-5">
-        <table class="table table-striped text-center">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Course Code</th>
-                    <th scope="col">actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $i = 1;
-                ?>
-                @foreach ($courses as $course)
+        <div class="container my-5">
+            <table class="table table-striped text-center">
+                <thead>
                     <tr>
-
-                        <th scope="row">{{ $i++ }}</th>
-                        <td> {{ $course->name }} </td>
-                        <td> {{ $course->description }} </td>
-                        <td> {{ $course->course_code }} </td>
-                        <td>
-                            <span class="d-flex justify-content-center">
-                                <a href="{{ route('admin.courses.edit', $course->id) }}" class="btn btn-success mx-1">Edit</a>
-                                <form action="{{ route('admin.courses.destroy', $course->id) }}" method="POST">
-                                    @csrf
-                                    @method("DELETE")
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </span>
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Course Code</th>
+                        <th scope="col">actions</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-@endsection
+                </thead>
+                <tbody>
+                    <?php
+                    $i = 1;
+                    ?>
+                    @foreach ($courses as $course)
+                        <tr>
+
+                            <th scope="row">{{ $i++ }}</th>
+                            <td> {{ $course->name }} </td>
+                            <td> {{ $course->description }} </td>
+                            <td> {{ $course->course_code }} </td>
+                            <td>
+                                <span class="d-flex justify-content-center">
+                                    <a href="{{ route('admin.courses.edit', $course->id) }}"
+                                        class="btn btn-success mx-1">Edit</a>
+                                    <form action="{{ route('admin.courses.destroy', $course->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </span>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endsection

@@ -6,6 +6,7 @@ use App\Models\Question;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class SubmissionController extends Controller
@@ -13,9 +14,10 @@ class SubmissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $submissions = Auth::guard('web')->user()->submissions;
+        return view('user.submissions.index', compact('submissions'));
     }
 
     /**

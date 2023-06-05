@@ -45,7 +45,7 @@
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('courses')"><i
                                 class="fa-solid fa-calendar-days me-3"></i><span>Courses</span>
                         </a>
-                        <a href=""
+                        <a href="{{ route('user.submissions.index', ['user' => Auth::guard('web')->user()->id]) }}"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('submissions')"><i
                                 class="fa-solid fa-calendar-days me-3"></i><span>Submissions</span>
                         </a>
