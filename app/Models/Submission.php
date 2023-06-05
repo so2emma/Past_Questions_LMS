@@ -23,4 +23,9 @@ class Submission extends Model
     {
         return $this->belongsTo(Question::class);
     }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }
