@@ -12,7 +12,6 @@
                         <p>No submissions made yet</p>
                     </div>
                 @else
-                    @foreach ($submissions as $submission)
                         <div class="container my-5">
                             <table class="table table-striped text-center">
                                 <thead>
@@ -36,7 +35,9 @@
                                             <td> {{ $submission->question->session->session_name }} </td>
                                             <td> {{ $submission->created_at->toDayDateTimeString() }} </td>
                                             <td>
-                                                
+                                                <a href="" class="btn btn-primary">View</a>
+                                                <a href="" class="btn btn-success">Edit</a>
+                                                <a href="" class="btn btn-danger">Delete</a>
                                                 {{-- <span class="d-flex justify-content-center">
                                                     <a href="{{ route('admin.submissions.edit', $submission->id) }}"
                                                         class="btn btn-success mx-1">Edit</a>
@@ -53,7 +54,6 @@
                                 </tbody>
                             </table>
                         </div>
-                    @endforeach
                 @endif
 
             </div>

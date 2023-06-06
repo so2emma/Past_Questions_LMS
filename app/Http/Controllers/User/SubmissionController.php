@@ -25,6 +25,16 @@ class SubmissionController extends Controller
      */
     public function create(Question $question)
     {
+        $user = Auth::guard('web')->user();
+
+        $existingSubmission = Submission::where('user_id', $user->id)
+            ->where('question_id', $question->id)
+            ->first();
+
+        if ($existingSubmission) {
+            return redirect()->back()->with('failure', 'You have already submitted a solution for this question.');
+        }
+
         return view('user.submissions.create', compact('question'));
     }
 
@@ -33,16 +43,25 @@ class SubmissionController extends Controller
      */
     public function store(Question $question, Request $request)
     {
+        $user = Auth::guard('web')->user();
+
+        $existingSubmission = Submission::where('user_id', $user->id)
+            ->where('question_id', $question->id)
+            ->first();
+
+        if ($existingSubmission) {
+            return redirect()->back()->with('failure', 'You have already submitted a solution for this question.');
+        }
+
         $request->validate([
             'file' => 'required|mimes:pdf|max:2048'
         ]);
 
-        $user = Auth::guard('web')->user();
 
-        $destination_name = 'Submissions/'.str_replace(' ','',$question->course->course_code).'/'.$question->session->session_name;
-        $file_name = $user->id.'-'.$question->session->session_name;
+        $destination_name = 'Submissions/' . str_replace(' ', '', $question->course->course_code) . '/' . $question->session->session_name;
+        $file_name = $user->id . '-' . $question->session->session_name;
 
-        if($request->file('file')) {
+        if ($request->file('file')) {
             $path = $request->file('file')->storeAs($destination_name, $file_name);
 
             Submission::create([
@@ -52,7 +71,7 @@ class SubmissionController extends Controller
             ]);
 
             return redirect()->route('user.show.question', ['question' => $question->id])
-            ->with('success', 'Solution submitted Successfully');
+                ->with('success', 'Solution submitted Successfully');
         }
     }
 
