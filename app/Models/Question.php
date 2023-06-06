@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,14 @@ class Question extends Model
         'session_id',
         'path',
     ];
+
+    public function scopeUserHasMadeSubmission(Builder $query, User $user, Question $question)
+    {
+        return $query->whereHas('submissions', function($query) use($question, $user){
+            return $query->where('user_id', '=', $user->id)
+                        ->where('question_id', '=', $question->id);
+        });
+    }
 
     public function course()
     {

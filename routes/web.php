@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ProgrammeController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\SessionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\GradingController;
 use App\Http\Controllers\User\SubmissionController;
 use App\Http\Controllers\User\UserCourseController;
 
@@ -57,6 +58,8 @@ Route::prefix("user")->name('user.')->group(function() {
         Route::get('submission/{user}', [SubmissionController::class, 'index'])->name('submissions.index');
         Route::get('questions/{question}/submissions/create', [SubmissionController::class, 'create'])->name('submission.create');
         Route::post('questions/{question}/submissions', [SubmissionController::class, 'store'])->name('submission.store');
+        //GRADING MANAGEMENT
+        Route::get('gradings/{user}', [GradingController::class, 'index'])->name('grading.index');
     });
 });
 
