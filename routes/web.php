@@ -57,8 +57,11 @@ Route::prefix("user")->name('user.')->group(function() {
         //  SUBMISSION MANAGEMENT
         Route::get('submission/{user}/list_all_submissions', [SubmissionController::class, 'index'])->name('submissions.index');
         Route::get('submission/{submission}', [SubmissionController::class, 'show'])->name('submission.show');
+        Route::get('submission/{submission}/update', [SubmissionController::class, 'edit'])->name('submission.edit');
         Route::get('questions/{question}/submissions/create', [SubmissionController::class, 'create'])->name('submission.create');
         Route::post('questions/{question}/submissions', [SubmissionController::class, 'store'])->name('submission.store');
+        Route::put('submission/{submission}/update', [SubmissionController::class, 'update'])->name('submission.update');
+        Route::delete('submission/{submission}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
         //GRADING MANAGEMENT
         // Route::get('gradings/{user}', [GradingController::class, 'index'])->name('grading.index');
         Route::get('grading/submission/{submission}', [GradingController::class, 'display_submission'])->name('grading.submission');

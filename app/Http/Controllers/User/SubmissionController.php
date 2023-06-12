@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class SubmissionController extends Controller
 {
@@ -59,7 +60,7 @@ class SubmissionController extends Controller
 
 
         $destination_name = 'Submissions/' . str_replace(' ', '', $question->course->course_code) . '/' . $question->session->session_name;
-        $file_name = $user->id . '-' . $question->session->session_name;
+        $file_name = $user->id . '-' . $question->session->session_name . '.' . $request->file->getClientOriginalExtension();
 
         if ($request->file('file')) {
             $path = $request->file('file')->storeAs($destination_name, $file_name);
@@ -88,7 +89,7 @@ class SubmissionController extends Controller
      */
     public function edit(Submission $submission)
     {
-        //
+        return view('user.submissions.edit', compact('submission'));
     }
 
     /**
@@ -96,7 +97,32 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, Submission $submission)
     {
-        //
+        $user = Auth::guard('web')->user();
+
+        if ($submission->user_id !== $user->id) {
+            return abort(404);
+        }
+
+        $request->validate([
+            'file' => 'required|mimes:pdf|max:2048',
+        ]);
+
+        $question = $submission->question;
+
+        if ($request->hasFile('file')) {
+            Storage::delete($submission->path);
+
+            $destinationName = 'Submissions/' . str_replace(' ', '', $question->course->course_code) . '/' . $question->session->session_name;
+            $fileName = $user->id . '-' . $question->session->session_name . '.' . $request->file->getClientOriginalExtension();
+
+            $path = $request->file('file')->storeAs($destinationName, $fileName);
+
+            $submission->path = $path;
+            $submission->save();
+
+            return redirect()->route('user.show.question', ['question' => $question->id])
+                ->with('success', 'Solution updated successfully');
+        }
     }
 
     /**
@@ -104,6 +130,16 @@ class SubmissionController extends Controller
      */
     public function destroy(Submission $submission)
     {
-        //
+        $user = Auth::guard('web')->user();
+
+        if ($submission->user_id !== $user->id) {
+            return abort(404);
+        }
+
+        Storage::delete($submission->path);
+        $submission->delete();
+
+        return redirect()->back()->with('success', 'Submission deleted successfully');
     }
+
 }
