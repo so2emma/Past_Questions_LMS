@@ -35,7 +35,7 @@
                                             <td> {{ $submission->question->session->session_name }} </td>
                                             <td> {{ $submission->created_at->toDayDateTimeString() }} </td>
                                             <td>
-                                                <a href="" class="btn btn-primary">View</a>
+                                                <a href="{{ route('user.submission.show', ['submission' => $submission->id]) }}" class="btn btn-primary">View</a>
                                                 <a href="" class="btn btn-success">Edit</a>
                                                 <a href="" class="btn btn-danger">Delete</a>
                                                 {{-- <span class="d-flex justify-content-center">

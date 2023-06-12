@@ -17,7 +17,8 @@
     </div>
 
     <div class="container my-5 border border-radius">
-        <form action="{{ route('user.submission.store', ['question' => $question->id]) }}" method="POST" class="m-5" enctype="multipart/form-data">
+        <form action="{{ route('user.submission.store', ['question' => $question->id]) }}" method="POST" class="m-5"
+            enctype="multipart/form-data">
             @csrf
             <div class="input-group mb-3">
                 <input type="file" name="file" class="form-control" id="file">

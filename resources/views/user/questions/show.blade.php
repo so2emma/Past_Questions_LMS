@@ -8,6 +8,7 @@
         <div class="d-flex justify-content-between">
             <span class="h4  me-auto fw-bold">
                 {{ $question->course->course_code . ' ' . $question->session->session_name . ' session' }}
+                <button class="btn btn-dark-outline" disabled="disabled">Solution Submitted</button>
             </span>
 
             <span>
@@ -17,8 +18,8 @@
         </div>
         <div>
             @if ($question->userHasMadeSubmission(Auth::guard('web')->user(), $question)->first())
-                <button class="btn btn-dark-outline" disabled="disabled">Assignment Submitted</button>
-                <a href="" class="btn btn-success">Grade Peers Submission</a>
+                <a href="{{ route('user.submission.show', ['submission' => $submission->id]) }}" class="btn btn-primary">View Submission</a>
+                <a href="{{ route('user.grading.submission', ['submission' => $submission->id]) }}" class="btn btn-success">Grade Peers Submission</a>
             @else
                 <a class="btn btn-primary" href="{{ route('user.submission.create', ['question' => $question->id]) }}">Make A
                     Submission</a>

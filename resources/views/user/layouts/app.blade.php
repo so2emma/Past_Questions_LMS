@@ -19,6 +19,9 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    {{-- Custom CSS --}}
+    @yield('css')
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -49,8 +52,11 @@
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('submissions')"><i
                                 class="fa-solid fa-calendar-days me-3"></i><span>Submissions</span>
                         </a>
-                        <a href="{{ route('user.grading.index', ['user' => Auth::guard('web')->user()->id]) }}"
+                        {{-- <a href="{{ route('user.grading.index', ['user' => Auth::guard('web')->user()->id]) }}"
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('gradings')"><i
+                                class="fa-solid fa-calendar-days me-3"></i><span>Gradings</span>
+                        </a> --}}
+                        <a href="" class="list-group-item list-group-item-action py-4 fw-bold @yield('gradings')"><i
                                 class="fa-solid fa-calendar-days me-3"></i><span>Gradings</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-4 fw-bold "><i
@@ -148,6 +154,9 @@
             @yield('content')
         </div>
     </main>
+
+        {{-- Custom js --}}
+        @yield('js')
 </body>
 
 </html>

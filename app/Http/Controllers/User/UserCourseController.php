@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserCourseController extends Controller
 {
@@ -55,6 +56,11 @@ class UserCourseController extends Controller
 
     public function show_question(Question $question)
     {
-        return view('user.questions.show', compact('question'));
+        $submission = DB::table('submissions')
+        ->where('user_id', '=', Auth::guard('web')->user()->id)
+        ->where('question_id', '=', $question->id )->first();
+
+
+        return view('user.questions.show', compact('question', 'submission'));
     }
 }

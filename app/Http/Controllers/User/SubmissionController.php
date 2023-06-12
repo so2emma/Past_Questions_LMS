@@ -80,7 +80,7 @@ class SubmissionController extends Controller
      */
     public function show(Submission $submission)
     {
-        //
+        return view('user.submissions.show', compact('submission'));
     }
 
     /**

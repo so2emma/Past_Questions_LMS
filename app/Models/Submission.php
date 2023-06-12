@@ -24,7 +24,7 @@ class Submission extends Model
         return $this->belongsTo(Question::class);
     }
 
-    public function grades()
+    public function gradings()
     {
         return $this->hasMany(Grading::class);
     }
