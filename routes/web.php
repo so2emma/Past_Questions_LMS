@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ProgrammeController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\SessionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\GradeController;
 use App\Http\Controllers\User\GradingController;
 use App\Http\Controllers\User\SubmissionController;
 use App\Http\Controllers\User\UserCourseController;
@@ -66,6 +67,10 @@ Route::prefix("user")->name('user.')->group(function() {
         // Route::get('gradings/{user}', [GradingController::class, 'index'])->name('grading.index');
         Route::get('grading/submission/{submission}', [GradingController::class, 'display_submission'])->name('grading.submission');
         Route::post('grading/submissions/{submission}', [GradingController::class, 'store_grade'])->name('grading.allocation');
+        //GRADE MANAGEMENT
+        Route::get('submissions/grades/index', [GradeController::class, 'index'])->name('submission.grade.index');
+        Route::get('submissions/{submission}/grades/show', [GradeController::class, 'show'])->name('submission.grade.show');
+
     });
 });
 

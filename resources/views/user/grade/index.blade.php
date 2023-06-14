@@ -6,13 +6,13 @@
 @section('content')
     <div class="container">
         <div class="m-5">
-            <h3 class="fw-bold">List of registered gradings:</h3>
+            <h3 class="fw-bold">Submissions that have been graded</h3>
             <div class="container py-5">
 
                 <div class="container py-5">
                     @if ($submissions->isEmpty())
                         <div class="alert alert-danger">
-                            <p>No submissions enrolled yet.</p>
+                            <p>No submission graded yet</p>
                         </div>
                     @else
                         @foreach ($submissions as $submission)
@@ -21,17 +21,15 @@
                                     <div class="row align-items-center">
                                         <div class="col-md-10">
                                             <h4 class="h2 fw-bold">
-                                                {{ $submission->submission_code }}
+                                                {{ $submission->question->course->course_code }}
                                             </h4>
                                             <p class="lead mb-0">
-                                                {{ $submission->name }}
+                                                {{ $submission->question->course->name }}
                                             </p>
-                                            <span> No. of question: {{ count($submission->questions) }}</span>
                                         </div>
                                         <div class="col-md-2">
                                             <a class="btn btn-primary m-2 fw-bold"
-                                                href="{{ route('user.submission.questions', ['submission' => $submission->id]) }}">View
-                                                Questions</a>
+                                                href="{{ route('user.submission.grade.show', ['submission' => $submission->id]) }}">Grading</a>
                                         </div>
                                     </div>
                                 </div>

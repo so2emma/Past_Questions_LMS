@@ -52,11 +52,8 @@
                             class="list-group-item list-group-item-action py-4 fw-bold @yield('submissions')"><i
                                 class="fa-solid fa-calendar-days me-3"></i><span>Submissions</span>
                         </a>
-                        {{-- <a href="{{ route('user.grading.index', ['user' => Auth::guard('web')->user()->id]) }}"
-                            class="list-group-item list-group-item-action py-4 fw-bold @yield('gradings')"><i
-                                class="fa-solid fa-calendar-days me-3"></i><span>Gradings</span>
-                        </a> --}}
-                        <a href="" class="list-group-item list-group-item-action py-4 fw-bold @yield('gradings')"><i
+
+                        <a href="{{ route('user.submission.grade.index') }}" class="list-group-item list-group-item-action py-4 fw-bold @yield('gradings')"><i
                                 class="fa-solid fa-calendar-days me-3"></i><span>Gradings</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-4 fw-bold "><i
