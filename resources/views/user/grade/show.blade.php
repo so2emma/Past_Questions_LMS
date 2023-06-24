@@ -6,7 +6,7 @@
 @section('content')
     <div class="container">
         <div class="m-5">
-            <h3 class="fw-bold">Peer Grades for submission</h3>
+            <h3 class="fw-bold">Peer Grades for submission: {{ $submission->question->course->course_code }}</h3>
             <div class="container py-5">
 
                 <div class="container py-5">

@@ -6,9 +6,9 @@
 @section('content')
     <div class="container">
         <div class="m-5">
-            <h4>Course Enrollment is Currently Available</h4>
+            <h4 class="lead fw-bold display-6">Course Enrollment </h4>
             <div class="card">
-                <div class="card-header">
+                <div class="card-header fw-bold">
                     Find Course
                 </div>
                 <div class="card-body">

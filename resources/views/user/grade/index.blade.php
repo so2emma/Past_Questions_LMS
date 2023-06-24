@@ -29,7 +29,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <a class="btn btn-primary m-2 fw-bold"
-                                                href="{{ route('user.submission.grade.show', ['submission' => $submission->id]) }}">Grading</a>
+                                                href="{{ route('user.submission.grade.show', ['submission' => $submission->id]) }}">View Grades</a>
                                         </div>
                                     </div>
                                 </div>

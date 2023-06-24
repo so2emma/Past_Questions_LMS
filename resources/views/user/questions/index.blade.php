@@ -6,7 +6,7 @@
 @section('content')
     <div class="container">
         <div class="m-5">
-            <h4 class="h2 fw-bold">{{ $course->course_code }}</h4>
+            <h4 class="h2 fw-bold">{{ $course->course_code }} Questions</h4>
             <div class="container my-5">
                 @if ($questions->isEmpty())
                     <div class="alert alert-danger">

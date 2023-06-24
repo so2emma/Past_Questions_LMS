@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ProgrammeController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\SessionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\User\GradeController;
 use App\Http\Controllers\User\GradingController;
 use App\Http\Controllers\User\SubmissionController;
@@ -44,7 +45,7 @@ Route::prefix("user")->name('user.')->group(function() {
     });
     Route::middleware('auth:web')->group(function() {
         //  DASHBOARD
-        Route::view('/dashboard', 'user.dashboard')->name('dashboard');
+        Route::get('/dashboard', [UserDashboardController::class, 'dashboard'])->name('dashboard');
         // ENROLLMENT MANAEMENT
         Route::get('/enroll', [UserCourseController::class, 'view_course'])->name('available.course');
         Route::post('/enroll', [UserCourseController::class, 'search_course'])->name('available.course');

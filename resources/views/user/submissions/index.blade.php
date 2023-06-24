@@ -7,6 +7,7 @@
     <div class="container">
         <div class="m-5">
             <div class="container my-5">
+            <h4 class="h2 fw-bold">Solutions Submission</h4>
                 @if ($submissions->isEmpty())
                     <div class="alert alert-danger">
                         <p>No submissions made yet</p>

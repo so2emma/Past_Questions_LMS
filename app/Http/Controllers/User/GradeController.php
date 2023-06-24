@@ -34,6 +34,6 @@ class GradeController extends Controller
 
         $gradings = $submission->gradings;
 
-        return view('user.grade.show', compact('gradings'));
+        return view('user.grade.show', compact('gradings','submission'));
     }
 }
